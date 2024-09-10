@@ -58,14 +58,6 @@ class OptionsMenu extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		#if mobile
-		if (virtualPad.buttonC.justPressed)
-		{
-			removeVirtualPad();
-			openSubState(new mobile.MobileControlsSubState());
-		}
-		#end
-
 		if (controls.ACCEPT)
 		{
 			changeBinding();
