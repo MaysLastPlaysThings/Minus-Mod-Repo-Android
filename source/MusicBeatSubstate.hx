@@ -59,6 +59,8 @@ class MusicBeatSubstate extends FlxSubState
 	{
 		if (virtualPad != null)
 		{
+		  virtualPad.x = x;
+      virtualPad.y = y;
 			var camControls:FlxCamera = new FlxCamera();
 			FlxG.cameras.add(camControls, DefaultDrawTarget);
 			camControls.bgColor.alpha = 0;
