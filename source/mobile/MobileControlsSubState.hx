@@ -2,7 +2,7 @@ package mobile;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxSubState;
+import flixel.FlxState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
@@ -15,7 +15,7 @@ import mobile.flixel.FlxHitbox;
 import mobile.flixel.FlxVirtualPad;
 import openfl.utils.Assets;
 
-class MobileControlsSubState extends FlxSubState
+class MobileControlsState extends FlxState
 {
 	private final controlsItems:Array<String> = ['Pad-Right', 'Pad-Left', 'Pad-Custom', 'Pad-Duo', 'Hitbox', 'Keyboard'];
 
@@ -54,7 +54,7 @@ class MobileControlsSubState extends FlxSubState
 				MobileControls.customVirtualPad = virtualPad;
 
 			FlxTransitionableState.skipNextTransOut = true;
-			FlxG.resetState();
+			FlxG.switchState(new MainMenuState());
 		});
 		exitButton.setGraphicSize(Std.int(exitButton.width) * 3);
 		exitButton.label.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 21, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,
