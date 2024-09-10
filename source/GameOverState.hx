@@ -7,11 +7,13 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
 
 class GameOverState extends FlxTransitionableState
 {
 	var bfX:Float = 0;
 	var bfY:Float = 0;
+	var bf:Boyfriend;
 
 	public function new(x:Float, y:Float)
 	{
@@ -30,7 +32,7 @@ class GameOverState extends FlxTransitionableState
 			loser.animation.play('lose');
 			// add(loser); */
 
-		var bf:Boyfriend = new Boyfriend(bfX, bfY);
+		bf = new Boyfriend(bfX, bfY);
 		// bf.scrollFactor.set();
 		add(bf);
 		bf.playAnim('firstDeath');
