@@ -32,6 +32,10 @@
 		{
 			"name":"hscript",
 			"type":"haxelib"
+		},
+		{
+			"name":"polymod",
+			"type":"haxelib",
 		}
 	]
 }
