@@ -94,7 +94,7 @@ class MainMenuState extends MusicBeatState
 		changeItem();
 
 		#if mobile
-		addVirtualPad(UP_DOWN, A_B);
+		addVirtualPad(UP_DOWN, A_B_C);
 		#end
 
 		super.create();
@@ -104,6 +104,13 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+	  #if mobile
+	  if (virtualPad.buttonC.justPressed)
+	  {
+	    FlxG.switchState(new mobile.MobileControlsState());
+	  }
+	  #end
+
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
