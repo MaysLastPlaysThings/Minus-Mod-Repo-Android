@@ -3,7 +3,7 @@
 		{
 			"name":"hxcpp",
 			"type":"haxelib",
-      "version": "4.2.1"
+                        "version": "4.2.1"
 		},
 		{
 			"name":"lime",
@@ -35,7 +35,7 @@
 		},
 		{
 			"name":"polymod",
-			"type":"haxelib",
+			"type":"haxelib"
 		}
 	]
 }
