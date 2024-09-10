@@ -41,23 +41,30 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.target = null;
 
 		bf.playAnim('firstDeath');
-
-		#if mobile
-		addVirtualPad(NONE, A_B);
-		addVirtualPadCamera(false);
-		#end
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-		if (controls.ACCEPT)
+		#if mobile
+		for (touch in FlxG.touches.list)
+		{
+			if (touch.justPressed)
+			{
+				pressedEnter = true;
+			}
+		}
+		#end
+
+		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
+
+		if (pressedEnter)
 		{
 			endBullshit();
 		}
 
-		if (controls.BACK)
+		if (#if android FlxG.android.justReleased.BACK #else controls.BACK #end)
 		{
 			FlxG.sound.music.stop();
 
