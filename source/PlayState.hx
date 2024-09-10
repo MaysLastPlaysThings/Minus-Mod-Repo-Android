@@ -1495,15 +1495,7 @@ class PlayState extends MusicBeatState
 			vocals.stop();
 			FlxG.sound.music.stop();
 
-			if (PlayState.isStoryMode)
-			{
-				FlxG.switchState(new StoryMenuState());
-			}
-			else
-			{
-				FlxG.switchState(new FreeplayState());
-			}
-			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			 FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
 
 		if (unspawnNotes[0] != null)
