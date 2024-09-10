@@ -199,7 +199,7 @@ class ChartingState extends MusicBeatState
 
 			FlxG.sound.music.volume = vol;
 		};
-		//This is by far the most useless function ever, like why the fuck would you mute the shit that you're supposed to chart? ?!?!?!? I was bored lol
+		// This is by far the most useless function ever, like why the fuck would you mute the shit that you're supposed to chart? ?!?!?!? I was bored lol
 		var check_vocal_mute = new FlxUICheckBox(10, 250, null, null, "Mute Vocals (in editor)", 100);
 		check_vocal_mute.checked = false;
 		check_vocal_mute.callback = function()
@@ -314,9 +314,9 @@ class ChartingState extends MusicBeatState
 		});
 
 		var firstSection:FlxButton = new FlxButton(10, 190, "Jump to Start", function()
-			{
-				changeSection(0);
-			});
+		{
+			changeSection(0);
+		});
 
 		check_mustHitSection = new FlxUICheckBox(10, 30, null, null, "Must hit section", 100);
 		check_mustHitSection.name = 'check_mustHit';
@@ -677,7 +677,7 @@ class ChartingState extends MusicBeatState
 			+ curBeat
 			+ "\nCurrent Step: "
 			+ curStep;
-			
+
 		super.update(elapsed);
 	}
 

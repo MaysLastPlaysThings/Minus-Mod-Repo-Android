@@ -63,7 +63,6 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 				antialiasing = true;
 
-
 			case 'gf-christmas':
 				tex = FlxAtlasFrames.fromSparrow('assets/images/christmas/gfChristmas.png', 'assets/images/christmas/gfChristmas.xml');
 				frames = tex;
@@ -96,23 +95,21 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 				antialiasing = true;
 
-			
 			case 'gf-pixel':
-					tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/gfPixel.png', 'assets/images/weeb/gfPixel.xml');
-					frames = tex;
-					animation.addByIndices('singUP', 'GF IDLE', [2], "", 24, false);
-					animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-					animation.addByIndices('danceRight', 'GF IDLE', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-	
-					addOffset('danceLeft', 0);
-					addOffset('danceRight', 0);
-	
-					playAnim('danceRight');
-	
-					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
-					updateHitbox();
-					antialiasing = false;
-				
+				tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/gfPixel.png', 'assets/images/weeb/gfPixel.xml');
+				frames = tex;
+				animation.addByIndices('singUP', 'GF IDLE', [2], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF IDLE', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+
+				addOffset('danceLeft', 0);
+				addOffset('danceRight', 0);
+
+				playAnim('danceRight');
+
+				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
+				updateHitbox();
+				antialiasing = false;
 
 			case 'gf-car':
 				tex = FlxAtlasFrames.fromSparrow('assets/images/gfCar.png', 'assets/images/gfCar.xml');
@@ -127,7 +124,6 @@ class Character extends FlxSprite
 
 				playAnim('danceRight');
 				antialiasing = true;
-
 
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
@@ -190,7 +186,6 @@ class Character extends FlxSprite
 				playAnim('idle');
 				antialiasing = true;
 
-
 			case 'mom-car':
 				tex = FlxAtlasFrames.fromSparrow('assets/images/momCar.png', 'assets/images/momCar.xml');
 				frames = tex;
@@ -205,9 +200,9 @@ class Character extends FlxSprite
 
 				addOffset('idle');
 				addOffset("singUP", 62, 71);
-                addOffset("singRIGHT", 14, -46);
-                addOffset("singLEFT", 197, -29);
-                addOffset("singDOWN", 48, -143);
+				addOffset("singRIGHT", 14, -46);
+				addOffset("singLEFT", 197, -29);
+				addOffset("singDOWN", 48, -143);
 
 				playAnim('idle');
 				antialiasing = true;
@@ -273,9 +268,9 @@ class Character extends FlxSprite
 
 				addOffset('idle');
 				addOffset("singUP", -60, 29);
-                addOffset("singRIGHT", -8, -9);
-                addOffset("singLEFT", -8, 0);
-                addOffset("singDOWN", 129, -65);
+				addOffset("singRIGHT", -8, -9);
+				addOffset("singLEFT", -8, 0);
+				addOffset("singDOWN", 129, -65);
 				addOffset("singUPmiss", -19, 67);
 				addOffset("singRIGHTmiss", -60, 41);
 				addOffset("singLEFTmiss", 62, 64);
@@ -285,7 +280,6 @@ class Character extends FlxSprite
 
 				flipX = true;
 				antialiasing = true;
-
 
 			case 'bf' | 'bf-car':
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/BOYFRIEND.png', 'assets/images/BOYFRIEND.xml');
@@ -309,25 +303,25 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 
 				addOffset('scared', -4);
-                addOffset('deathLoop', 16, 5);
-                addOffset("singRIGHTmiss", -44, 21);
-                addOffset("singDOWN", 50, -52);
-                addOffset("singLEFTmiss", 12, 17);
-                addOffset("singUP", -29, 13);
+				addOffset('deathLoop', 16, 5);
+				addOffset("singRIGHTmiss", -44, 21);
+				addOffset("singDOWN", 50, -52);
+				addOffset("singLEFTmiss", 12, 17);
+				addOffset("singUP", -29, 13);
 				addOffset("fuckyou", -29, 13);
-                addOffset('deathConfirm', 17, 43);
-                addOffset('firstDeath', 17, 11);
-                addOffset("hey", -4, 5);
-                addOffset('idle', -5);
-                addOffset("singDOWNmiss", 46, -24);
-                addOffset("singRIGHT", -52, -7);
-                addOffset("singLEFT", 12, -8);
-                addOffset("singUPmiss", -5, 14);
+				addOffset('deathConfirm', 17, 43);
+				addOffset('firstDeath', 17, 11);
+				addOffset("hey", -4, 5);
+				addOffset('idle', -5);
+				addOffset("singDOWNmiss", 46, -24);
+				addOffset("singRIGHT", -52, -7);
+				addOffset("singLEFT", 12, -8);
+				addOffset("singUPmiss", -5, 14);
 
 				flipX = true;
 				antialiasing = true;
 
-				case 'bf-three' | 'bf-three-christmas' | 'bf-three-car':
+			case 'bf-three' | 'bf-three-christmas' | 'bf-three-car':
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/BOYFRIEND_3.png', 'assets/images/BOYFRIEND_3.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
@@ -346,28 +340,27 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
-				
-				//had to move him down a lil lol
+
+				// had to move him down a lil lol
 				addOffset('scared', 1, -28);
-                addOffset('deathLoop', 58, -34);
-                addOffset("singRIGHTmiss", -2, -42);
-                addOffset("singDOWN", 58, -99);
-                addOffset("singLEFTmiss", 35, -48);
-                addOffset("singUP", 15, -18);
-                addOffset('deathConfirm', 66, 48);
-                addOffset('firstDeath', 70, -12);
-                addOffset("hey", 29, -25);
-                addOffset('idle', 0, -26);
-                addOffset("singDOWNmiss", 46, -110);
-                addOffset("singRIGHT", -13, -49);
-                addOffset("singLEFT", 34, -51);
-                addOffset("singUPmiss", 12, -23);
+				addOffset('deathLoop', 58, -34);
+				addOffset("singRIGHTmiss", -2, -42);
+				addOffset("singDOWN", 58, -99);
+				addOffset("singLEFTmiss", 35, -48);
+				addOffset("singUP", 15, -18);
+				addOffset('deathConfirm', 66, 48);
+				addOffset('firstDeath', 70, -12);
+				addOffset("hey", 29, -25);
+				addOffset('idle', 0, -26);
+				addOffset("singDOWNmiss", 46, -110);
+				addOffset("singRIGHT", -13, -49);
+				addOffset("singLEFT", 34, -51);
+				addOffset("singUPmiss", 12, -23);
 
 				flipX = true;
 				antialiasing = true;
 
-
-				case 'bf-pixel':
+			case 'bf-pixel':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPixel.png', 'assets/images/weeb/bfPixel.xml');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
@@ -401,27 +394,26 @@ class Character extends FlxSprite
 
 				flipX = true;
 
-				case 'bf-pixel-dead':
-                frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPixelsDEAD.png', 'assets/images/weeb/bfPixelsDEAD.xml');
-                animation.addByPrefix('idle', "BF Dies pixel", 24, false);
-                animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
-                animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
-                animation.addByPrefix('deathConfirm', "RETRY CONFIRM", 24, false);
+			case 'bf-pixel-dead':
+				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPixelsDEAD.png', 'assets/images/weeb/bfPixelsDEAD.xml');
+				animation.addByPrefix('idle', "BF Dies pixel", 24, false);
+				animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
+				animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "RETRY CONFIRM", 24, false);
 
-                addOffset('idle');
-                addOffset('firstDeath');
-                addOffset('deathLoop', -37);
-                addOffset('deathConfirm', -37);
-                playAnim('idle');
-                // pixel bullshit
-                setGraphicSize(Std.int(width * 6));
-                updateHitbox();
-                antialiasing = false;
-                flipX = true;
+				addOffset('idle');
+				addOffset('firstDeath');
+				addOffset('deathLoop', -37);
+				addOffset('deathConfirm', -37);
+				playAnim('idle');
+				// pixel bullshit
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+				antialiasing = false;
+				flipX = true;
 
-
-				case 'bf-two' | 'bf-two-christmas' | 'bf-two-car':
-				//sus
+			case 'bf-two' | 'bf-two-christmas' | 'bf-two-car':
+				// sus
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/BOYFRIEND_2.png', 'assets/images/BOYFRIEND_2.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
@@ -442,24 +434,22 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 
 				addOffset('scared', -24);
-                addOffset('deathLoop', 6, 15);
-                addOffset("singRIGHTmiss", -17, -13);
-                addOffset("singDOWN", -24, -66);
-                addOffset("singLEFTmiss", 11, -3);
-                addOffset("singUP", 0, 25);
-                addOffset('deathConfirm', 17, 70);
-                addOffset('firstDeath', 17, 11);
-                addOffset("hey", 14, 52);
-                addOffset('idle', 0);
-                addOffset("singDOWNmiss", -30, -66);
-                addOffset("singRIGHT", -42, -7);
-                addOffset("singLEFT", 1, -3);
-                addOffset("singUPmiss", -18, 28);
+				addOffset('deathLoop', 6, 15);
+				addOffset("singRIGHTmiss", -17, -13);
+				addOffset("singDOWN", -24, -66);
+				addOffset("singLEFTmiss", 11, -3);
+				addOffset("singUP", 0, 25);
+				addOffset('deathConfirm', 17, 70);
+				addOffset('firstDeath', 17, 11);
+				addOffset("hey", 14, 52);
+				addOffset('idle', 0);
+				addOffset("singDOWNmiss", -30, -66);
+				addOffset("singRIGHT", -42, -7);
+				addOffset("singLEFT", 1, -3);
+				addOffset("singUPmiss", -18, 28);
 
 				flipX = true;
 				antialiasing = true;
-
-
 
 			case 'bf-christmas':
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/christmas/bfChristmas.png', 'assets/images/christmas/bfChristmas.xml');
@@ -489,10 +479,7 @@ class Character extends FlxSprite
 				flipX = true;
 				antialiasing = true;
 
-
-			
-
-				case 'senpai':
+			case 'senpai':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/senpai.png', 'assets/images/weeb/senpai.xml');
 				animation.addByPrefix('idle', 'Senpai Idle', 24, false);
 				animation.addByPrefix('singUP', 'SENPAI UP NOTE', 24, false);
@@ -507,7 +494,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 46, 121);
 
 				playAnim('idle');
-				//Not sure if this is the right size but whatev.
+				// Not sure if this is the right size but whatev.
 				setGraphicSize(Std.int(width * 1.5));
 				updateHitbox();
 				antialiasing = false;
@@ -520,16 +507,14 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'Angry Senpai RIGHT NOTE', 24, false);
 				animation.addByPrefix('singDOWN', 'Angry Senpai DOWN NOTE', 24, false);
 
-				
 				addOffset('idle', 50, 111);
 				addOffset('singUP', 38, 110);
 				addOffset("singRIGHT", 63, 113);
 				addOffset("singLEFT", 37, 111);
 				addOffset("singDOWN", 46, 121);
-	
 
 				playAnim('idle');
-				//Not sure if this is the right size but whatev.
+				// Not sure if this is the right size but whatev.
 				setGraphicSize(Std.int(width * 1.5));
 				updateHitbox();
 
@@ -555,32 +540,29 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				antialiasing = false;
-			
+
 			case 'spirit2':
-				//came here expecting to see minus spirit? hell nah fam
+				// came here expecting to see minus spirit? hell nah fam
 				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/spirit2.png', 'assets/images/weeb/spirit2.xml');
 				animation.addByPrefix('idle', "Angry Senpai Idle copy 2 instance 1", 24, false);
 				animation.addByPrefix('singUP', "Angry Senpai UP NOTE copy instance 1", 24, false);
 				animation.addByPrefix('singRIGHT', "Angry Senpai RIGHT NOTE copy instance 1", 24, false);
 				animation.addByPrefix('singLEFT', "Angry Senpai LEFT NOTE copy instance 1", 24, false);
 				animation.addByPrefix('singDOWN', "Angry Senpai DOWN NOTE copy instance 1", 24, false);
-	
+
 				addOffset('idle', -200, -119);
 				addOffset('singUP', -198, -119);
 				addOffset("singRIGHT", -200, -120);
 				addOffset("singLEFT", -199, -120);
 				addOffset("singDOWN", -200, -121);
-	
+
 				setGraphicSize(Std.int(width * 1.5));
 				updateHitbox();
-	
-				playAnim('idle');
-	
-				antialiasing = false;
-	
-	
 
-				
+				playAnim('idle');
+
+				antialiasing = false;
+
 			case 'parents-christmas':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/christmas/mom_dad_christmas_assets.png',
 					'assets/images/christmas/mom_dad_christmas_assets.xml');
@@ -606,8 +588,6 @@ class Character extends FlxSprite
 				addOffset("singLEFT-alt", -30, 15);
 				addOffset("singDOWN-alt", -30, -27);
 				antialiasing = true;
-
-			
 		}
 
 		dance();
@@ -660,14 +640,13 @@ class Character extends FlxSprite
 			case 'gf':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
-		
-				if(animation.curAnim.name == 'idle' && animation.curAnim.finished)
-					playAnim('idle',false,false,11);
-		
+
+				if (animation.curAnim.name == 'idle' && animation.curAnim.finished)
+					playAnim('idle', false, false, 11);
+
 			case 'bf-car':
-				if(animation.curAnim.name == 'idle' && animation.curAnim.finished)
-					playAnim('idle',false,false,11);
-			
+				if (animation.curAnim.name == 'idle' && animation.curAnim.finished)
+					playAnim('idle', false, false, 11);
 		}
 
 		super.update(elapsed);
@@ -684,7 +663,7 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-christmas' | 'gf-car'| 'gf-pixel' :
+				case 'gf' | 'gf-christmas' | 'gf-car' | 'gf-pixel':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
@@ -704,13 +683,11 @@ class Character extends FlxSprite
 						playAnim('danceLeft');
 				default:
 					playAnim('idle');
-					
-				case 'mom-car':
-					if(danced)
-						playAnim('idle',true);
-					danced = !danced;
-			
 
+				case 'mom-car':
+					if (danced)
+						playAnim('idle', true);
+					danced = !danced;
 			}
 		}
 	}

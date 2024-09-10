@@ -12,29 +12,21 @@ class GameOverSubstate extends MusicBeatSubstate
 	var bf:Boyfriend;
 	var camFollow:FlxObject;
 
-
 	var stageSuffix:String = "";
 
 	public function new(x:Float, y:Float)
 	{
 		var daChar = PlayState.SONG.player1;
-var daBf:String = '';
+		var daBf:String = '';
 
-
-	//Making them play the right death animations
+		// Making them play the right death animations
 		daBf = PlayState.bfMode;
-	 if (PlayState.bfMode == 'bf-pixel')
-		daBf = 'bf-pixel-dead';
-	
-		
-
-
+		if (PlayState.bfMode == 'bf-pixel')
+			daBf = 'bf-pixel-dead';
 
 		super();
 
 		Conductor.songPosition = 0;
-	
-		
 
 		bf = new Boyfriend(x, y, daBf);
 		add(bf);
@@ -45,7 +37,6 @@ var daBf:String = '';
 		FlxG.sound.play('assets/sounds/fnf_loss_sfx' + stageSuffix + TitleState.soundExt);
 		Conductor.changeBPM(100);
 
-	
 		FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
 

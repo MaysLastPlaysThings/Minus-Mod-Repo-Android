@@ -1,7 +1,5 @@
 package;
 
-
-
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -45,76 +43,64 @@ class FreeplayState extends MusicBeatState
 			}
 		 */
 
-		
- 
-
 		var isDebug:Bool = false;
 
 		#if debug
 		isDebug = true;
 		#end
 
-
 		if (StoryMenuState.weekUnlocked[2] || isDebug)
-			{
-				songs.push('Spookeez');
-				songs.push('South');
-			}
-	
-			if (StoryMenuState.weekUnlocked[3] || isDebug)
-			{
-				songs.push('Pico');
-				songs.push('Philly');
-				songs.push('Blammed');
-			}
-	
-			if (StoryMenuState.weekUnlocked[4] || isDebug)
-			{
-				songs.push('Satin-Panties');
-				songs.push('High');
-				songs.push('Milf');
-			}
-	
-			if (StoryMenuState.weekUnlocked[5] || isDebug)
-			{
-				songs.push('Cocoa');
-				songs.push('Eggnog');
-				songs.push('Winter-Horrorland');
-			}
-	
-			/*if (StoryMenuState.weekUnlocked[6] || isDebug)
+		{
+			songs.push('Spookeez');
+			songs.push('South');
+		}
+
+		if (StoryMenuState.weekUnlocked[3] || isDebug)
+		{
+			songs.push('Pico');
+			songs.push('Philly');
+			songs.push('Blammed');
+		}
+
+		if (StoryMenuState.weekUnlocked[4] || isDebug)
+		{
+			songs.push('Satin-Panties');
+			songs.push('High');
+			songs.push('Milf');
+		}
+
+		if (StoryMenuState.weekUnlocked[5] || isDebug)
+		{
+			songs.push('Cocoa');
+			songs.push('Eggnog');
+			songs.push('Winter-Horrorland');
+		}
+
+		/*if (StoryMenuState.weekUnlocked[6] || isDebug)
 			{
 				songs.push('Senpai');
 				songs.push('Roses');
 				songs.push('Thorns');
 				
 			}
-	*/
-
-
+		 */
 
 		// LOAD MUSIC
-
-	
 
 		// LOAD CHARACTERS
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGBlue.png');
 		add(bg);
-		
-		
-		
+
 		// send me weed (used the same freeplaystate i used in vibin' just ignore this lmao)
-		//var piconormal = new FlxSprite(900, 380);
-		//piconormal.frames = FlxAtlasFrames.fromSparrow('assets/images/Pico_FNF_assetss.png', 'assets/images/Pico_FNF_assetss.xml');
-		//piconormal.antialiasing = true;
-		//piconormal.scale.set(0.7, 0.7);
-		//piconormal.animation.addByPrefix('idle', 'Pico Idle Dance', 24);
-		//piconormal.animation.play('idle');
-		//piconormal.updateHitbox();
-		//add(piconormal);
-
-
+		// var piconormal = new FlxSprite(900, 380);
+		// piconormal.frames = FlxAtlasFrames.fromSparrow('assets/images/Pico_FNF_assetss.png', 'assets/images/Pico_FNF_assetss.xml');
+		// piconormal.antialiasing = true;
+		// piconormal.scale.set(0.7, 0.7);
+		// piconormal.animation.addByPrefix('idle', 'Pico Idle Dance', 24);
+		// piconormal.animation.play('idle');
+		// piconormal.updateHitbox();
+		// add(piconormal);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
@@ -175,10 +161,12 @@ class FreeplayState extends MusicBeatState
 			trace(md);
 		 */
 
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B);
+		#end
+
 		super.create();
 	}
-
-	
 
 	override function update(elapsed:Float)
 	{
@@ -200,27 +188,23 @@ class FreeplayState extends MusicBeatState
 		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
 
-		if (upP)
+		if (#if !mobile upP #else virtualPad.buttonUp.justPressed #end)
 		{
 			changeSelection(-1);
 		}
-		if (downP)
+		if (#if !mobile downP #else virtualPad.buttonDown.justPressed #end)
 		{
 			changeSelection(1);
 		}
 
-		if (controls.LEFT_P)
+		if (#if !mobile controls.LEFT_P #else virtualPad.buttonLeft.justPressed #end)
 			changeDiff(-1);
-		if (controls.RIGHT_P)
+		if (#if !mobile controls.RIGHT_P #else virtualPad.buttonRight.justPressed #end)
 			changeDiff(1);
 
 		if (controls.BACK)
 		{
-			
-				
 			FlxG.switchState(new MainMenuState());
-
-
 		}
 
 		if (accepted)
@@ -232,22 +216,16 @@ class FreeplayState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
 			PlayState.isStoryMode = false;
 			CharMenu.isStoryMode = false;
-		
-			
-			
+
 			PlayState.storyDifficulty = curDifficulty;
-			if (songs[curSelected].toLowerCase() == 'senpai' ||
-				songs[curSelected].toLowerCase() == 'roses' ||
-				songs[curSelected].toLowerCase() == 'thorns')
-				
+			if (songs[curSelected].toLowerCase() == 'senpai'
+				|| songs[curSelected].toLowerCase() == 'roses'
+				|| songs[curSelected].toLowerCase() == 'thorns')
 			{
-				
-			
 				PlayState.bfMode = 'bf-pixel';
 				FlxG.switchState(new PlayState());
 			}
-				else
-				
+			else
 				FlxG.switchState(new CharMenu());
 			if (FlxG.sound.music != null)
 				FlxG.sound.music.stop();
@@ -280,9 +258,9 @@ class FreeplayState extends MusicBeatState
 
 	function changeSelection(change:Int = 0)
 	{
-		#if !switch
-		NGio.logEvent('Fresh');
-		#end
+		/*#if !switch
+			NGio.logEvent('Fresh');
+			#end */
 
 		// NGio.logEvent('Fresh');
 		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
@@ -303,10 +281,10 @@ class FreeplayState extends MusicBeatState
 
 		FlxG.sound.music.stop();
 		songWait.cancel();
-		songWait.start(1, function(tmr:FlxTimer) {
-
-		FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
-	});
+		songWait.start(1, function(tmr:FlxTimer)
+		{
+			FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
+		});
 
 		var bullShit:Int = 0;
 

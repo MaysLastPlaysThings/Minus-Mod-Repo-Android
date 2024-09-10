@@ -1,6 +1,5 @@
 package;
 
-
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -8,18 +7,13 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.effects.FlxFlicker;
 import flixel.util.FlxTimer;
-
-
-
 import flixel.graphics.frames.FlxAtlasFrames;
 
-
-
-
-typedef CharacterMenuStory = {
+typedef CharacterMenuStory =
+{
 	var name:String;
 	var characterName:String;
-	//var portrait:String;
+	// var portrait:String;
 }
 
 class CharMenuStory extends MusicBeatState
@@ -30,26 +24,25 @@ class CharMenuStory extends MusicBeatState
 	var idleCharacter:FlxSprite;
 	var menuBG:FlxSprite;
 	var menuIcon:FlxSprite;
+
 	public static var isStoryMode:Bool = false;
+
 	public var targetY:Float = 0;
+
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
+
 	public static var characterShit:Array<CharacterMenuStory>;
-
-
-	
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 	private var grpMenuShiz:FlxTypedGroup<FlxSprite>;
 	var alreadySelectedShit:Bool = false;
-	// magnus sux
 
+	// magnus sux
 	var shittyNames:Array<String> = [
 		"Beta Boyfriend",
 		"Blue Boyfriend ",
 		"Mean Boyfriend",
-
-		//"Secret Boyfriend",
-		
+		// "Secret Boyfriend",
 	];
 
 	var txtOptionTitle:FlxText;
@@ -71,7 +64,7 @@ class CharMenuStory extends MusicBeatState
 		for (i in 0...menuItems.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
-		
+
 			songText.screenCenter(X);
 			songText.targetY = i;
 			grpMenuShit.add(songText);
@@ -92,13 +85,13 @@ class CharMenuStory extends MusicBeatState
 		idleCharacter.animation.addByPrefix('pissboyfriendselect', 'pissbfselect instance 1', 24);
 		idleCharacter.animation.addByPrefix('boyfriend2select', 'bluebfselect instance 1', 24);
 		idleCharacter.animation.addByPrefix('meanboyfriendselect', 'meanbfselect instance 1', 24);
-		
+
 		idleCharacter.animation.play('pissboyfriendidle');
 		idleCharacter.scale.set(0.7, 0.7);
 		idleCharacter.updateHitbox();
 		idleCharacter.screenCenter(XY);
 		idleCharacter.antialiasing = true;
-		
+
 		add(idleCharacter);
 
 		menuIcon = new FlxSprite();
@@ -111,9 +104,7 @@ class CharMenuStory extends MusicBeatState
 		menuIcon.animation.addByPrefix('pissbf', 'piss bf', 1);
 		add(menuIcon);
 
-		
-
-		//idleCharacterBetter = new Boyfriend(0, 0, 'bf');
+		// idleCharacterBetter = new Boyfriend(0, 0, 'bf');
 
 		var charSelHeaderText:Alphabet = new Alphabet(0, 50, 'CHARACTER SELECT', true, false);
 		charSelHeaderText.screenCenter(X);
@@ -133,6 +124,10 @@ class CharMenuStory extends MusicBeatState
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
+		#if mobile
+		addVirtualPad(LEFT_RIGHT, A_B);
+		#end
+
 		super.create();
 	}
 
@@ -142,7 +137,6 @@ class CharMenuStory extends MusicBeatState
 		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
 		if (txtOptionTitle.text == '')
 		{
-		
 			txtOptionTitle.text = 'NO DESCRIPTION';
 		}
 
@@ -152,84 +146,73 @@ class CharMenuStory extends MusicBeatState
 
 		if (!alreadySelectedShit)
 		{
-			if (upP)
+			if (#if !mobile upP #else virtualPad.buttonLeft.justPressed #end)
+			{
+				changeSelection(-1);
+			}
+			if (#if !mobile downP #else virtualPad.buttonRight.justPressed #end)
+			{
+				changeSelection(1);
+			}
+
+			if (accepted)
+			{
+				alreadySelectedShit = true;
+				var daSelected:String = menuItems[curSelected];
+				FlxFlicker.flicker(idleCharacter, 0);
+
+				// Selection and loading for them
+				switch (daSelected)
 				{
-					changeSelection(-1);
-				}
-				if (downP)
-				{
-					changeSelection(1);
-				}
-		
-				if (accepted)
-				{
-					alreadySelectedShit = true;
-					var daSelected:String = menuItems[curSelected];
-					FlxFlicker.flicker(idleCharacter, 0);
-				
-					
-					//Selection and loading for them
-					switch (daSelected)
-					{
-						case "BOYFRIEND":
-							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-							idleCharacter.animation.play('pissboyfriendselect');
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+					case "BOYFRIEND":
+						FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+						idleCharacter.animation.play('pissboyfriendselect');
+						FlxFlicker.flicker(grpMenuShit.members[curSelected], 0);
 						//	FlxG.sound.music.stop();
-							PlayState.bfMode = 'bf';
-							StoryMenuState.suffixThing = '';
-						
-							
-							
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new StoryMenuState());
-							});
-						case "BOYFRIENDSECOND":
-							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-							idleCharacter.animation.play('boyfriend2select');
-							idleCharacter.y -= 30;
-							idleCharacter.x -= 10;
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+						PlayState.bfMode = 'bf';
+						StoryMenuState.suffixThing = '';
+
+						new FlxTimer().start(1, function(tmr:FlxTimer)
+						{
+							FlxG.switchState(new StoryMenuState());
+						});
+					case "BOYFRIENDSECOND":
+						FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+						idleCharacter.animation.play('boyfriend2select');
+						idleCharacter.y -= 30;
+						idleCharacter.x -= 10;
+						FlxFlicker.flicker(grpMenuShit.members[curSelected], 0);
 						//	FlxG.sound.music.stop();
-							PlayState.bfMode = 'bf-two';
-							StoryMenuState.suffixThing = '-two';
-						
-							
-							
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new StoryMenuState());
-								
-							});
-							case "BOYFRIENDTHIRD":
-							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-							idleCharacter.animation.play('meanboyfriendselect');
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							idleCharacter.x -= 19;
+						PlayState.bfMode = 'bf-two';
+						StoryMenuState.suffixThing = '-two';
+
+						new FlxTimer().start(1, function(tmr:FlxTimer)
+						{
+							FlxG.switchState(new StoryMenuState());
+						});
+					case "BOYFRIENDTHIRD":
+						FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+						idleCharacter.animation.play('meanboyfriendselect');
+						FlxFlicker.flicker(grpMenuShit.members[curSelected], 0);
+						idleCharacter.x -= 19;
 						//	FlxG.sound.music.stop();
-							PlayState.bfMode = 'bf-three';
-							StoryMenuState.suffixThing = '-three';
-							
-							
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new StoryMenuState());
-								
-							});
-					
-						
-						default:
-							// so it doesnt crash lol
-							
-					}
+						PlayState.bfMode = 'bf-three';
+						StoryMenuState.suffixThing = '-three';
+
+						new FlxTimer().start(1, function(tmr:FlxTimer)
+						{
+							FlxG.switchState(new StoryMenuState());
+						});
+
+					default:
+						// so it doesnt crash lol
 				}
-		
-				if (controls.BACK)
-				{
-					
-					FlxG.switchState(new MainMenuState());
-				}
+			}
+
+			if (controls.BACK)
+			{
+				FlxG.switchState(new MainMenuState());
+			}
 		}
 
 		super.update(elapsed);
@@ -240,14 +223,14 @@ class CharMenuStory extends MusicBeatState
 		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 
 		curSelected += change;
-	
+
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
 		if (curSelected >= menuItems.length)
 			curSelected = 0;
-	
+
 		var bullShit:Int = 0;
-	
+
 		for (item in grpMenuShit.members)
 		{
 			item.x = bullShit - curSelected;
@@ -255,7 +238,7 @@ class CharMenuStory extends MusicBeatState
 
 			item.alpha = 0;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
-	
+
 			if (item.x == 0)
 			{
 				// item.setGraphicSize(Std.int(item.width));
@@ -268,8 +251,6 @@ class CharMenuStory extends MusicBeatState
 	function charCheckLmao()
 	{
 		var daSelected:String = menuItems[curSelected];
-	
-		
 
 		switch (daSelected)
 		{
@@ -292,9 +273,6 @@ class CharMenuStory extends MusicBeatState
 				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
 				menuIcon.animation.play('meanbf');
 				menuBG.color = 0xFFFFFF;
-			
 		}
-	
 	}
-	
 }

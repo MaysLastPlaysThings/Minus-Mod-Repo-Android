@@ -1,6 +1,5 @@
 package;
 
-
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -17,11 +16,9 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-
 import lime.app.Application;
 import openfl.Assets;
 import polymod.Polymod;
-
 
 using StringTools;
 
@@ -42,6 +39,10 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		#if mobile
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+
 		Polymod.init({modRoot: "mods", dirs: ['introMod']});
 
 		#if (!web)
@@ -56,13 +57,12 @@ class TitleState extends MusicBeatState
 
 		super.create();
 
-		//NGio.noLogin(APIStuff.API);
+		// NGio.noLogin(APIStuff.API);
 
-		//#if ng
-		//var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		//trace('NEWGROUNDS LOL');
-		//#end
-		
+		// #if ng
+		// var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
+		// trace('NEWGROUNDS LOL');
+		// #end
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
@@ -95,7 +95,6 @@ class TitleState extends MusicBeatState
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
-	
 
 	function startIntro()
 	{
@@ -122,10 +121,7 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.list.add(music);
 			// music.play();
 			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt, 0);
-			
-		
-			
-			
+
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
 
@@ -134,10 +130,6 @@ class TitleState extends MusicBeatState
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
-		
-	
-	
-
 
 		logoBl = new FlxSprite(-150, -100);
 		logoBl.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpin.png', 'assets/images/logoBumpin.xml');
@@ -145,7 +137,6 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-	
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
 		gfDance.frames = FlxAtlasFrames.fromSparrow('assets/images/gfDanceTitle.png', 'assets/images/gfDanceTitle.xml');
@@ -168,9 +159,6 @@ class TitleState extends MusicBeatState
 		var logo:FlxSprite = new FlxSprite().loadGraphic('assets/images/logo.png');
 		logo.screenCenter();
 		logo.antialiasing = true;
-	
-
-		
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -181,8 +169,6 @@ class TitleState extends MusicBeatState
 
 		credTextShit = new Alphabet(0, 0, "ninjamuffin99\nPhantomArcade\nkawaisprite\nevilsk8er", true);
 		credTextShit.screenCenter();
-
-	
 
 		credTextShit.visible = false;
 
@@ -248,15 +234,25 @@ class TitleState extends MusicBeatState
 			#end
 		}
 
+		#if mobile
+		for (touch in FlxG.touches.list)
+		{
+			if (touch.justPressed)
+			{
+				pressedEnter = true;
+			}
+		}
+		#end
+
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
-			#if !switch
-			NGio.unlockMedal(60960);
+			/*#if !switch
+				NGio.unlockMedal(60960);
 
-			// If it's Friday according to da clock
-			if (Date.now().getDay() == 5)
-				NGio.unlockMedal(61034);
-			#end
+				// If it's Friday according to da clock
+				if (Date.now().getDay() == 5)
+					NGio.unlockMedal(61034);
+				#end */
 
 			titleText.animation.play('press');
 
@@ -272,7 +268,7 @@ class TitleState extends MusicBeatState
 
 				var version:String = "v" + Application.current.meta.get('version');
 
-				if (version.trim() != NGio.GAME_VER.trim() && !OutdatedSubState.leftState)
+				if (/*version.trim() != NGio.GAME_VER.trim() &&*/ !OutdatedSubState.leftState)
 				{
 					trace('OLD VERSION!');
 					FlxG.switchState(new MainMenuState());

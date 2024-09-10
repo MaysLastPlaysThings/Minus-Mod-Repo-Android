@@ -11,7 +11,7 @@ class HealthIcon extends FlxSprite
 
 		antialiasing = true;
 		animation.add('bf', [0, 1], 0, false, isPlayer);
-		
+
 		animation.add('bf-car', [0, 1], 0, false, isPlayer);
 		animation.add('bf-christmas', [0, 1], 0, false, isPlayer);
 		animation.add('bf-pixel', [21, 21], 0, false, isPlayer);
@@ -34,9 +34,9 @@ class HealthIcon extends FlxSprite
 		animation.add('bf-two', [14, 15], 0, false, isPlayer);
 		animation.add('bf-two-car', [14, 15], 0, false, isPlayer);
 		animation.add('bf-two-christmas', [14, 15], 0, false, isPlayer);
-		animation.add('bf-three', [24,25,26,27], 0, false, isPlayer);
-		animation.add('bf-three-car', [24,25,26,27], 0, false, isPlayer);
-		animation.add('bf-three-christmas', [24,25,26,27], 0, false, isPlayer);
+		animation.add('bf-three', [24, 25, 26, 27], 0, false, isPlayer);
+		animation.add('bf-three-car', [24, 25, 26, 27], 0, false, isPlayer);
+		animation.add('bf-three-christmas', [24, 25, 26, 27], 0, false, isPlayer);
 		animation.play(char);
 		scrollFactor.set();
 	}
