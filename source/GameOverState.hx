@@ -14,6 +14,7 @@ class GameOverState extends FlxTransitionableState
 	var bfX:Float = 0;
 	var bfY:Float = 0;
 	var bf:Boyfriend;
+	var stageSuffix:String = "";
 
 	public function new(x:Float, y:Float)
 	{
