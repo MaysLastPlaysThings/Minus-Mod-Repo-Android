@@ -12,17 +12,18 @@ class GameOverSubstate extends MusicBeatSubstate
 	var bf:Boyfriend;
 	var camFollow:FlxObject;
 
+
 	var stageSuffix:String = "";
 
 	public function new(x:Float, y:Float)
 	{
 		var daChar = PlayState.SONG.player1;
-		var daBf:String = '';
+    var daBf:String = '';
 
-		// Making them play the right death animations
+	//Making them play the right death animations
 		daBf = PlayState.bfMode;
-		if (PlayState.bfMode == 'bf-pixel')
-			daBf = 'bf-pixel-dead';
+	 if (PlayState.bfMode == 'bf-pixel')
+		daBf = 'bf-pixel-dead';
 
 		super();
 
@@ -41,28 +42,16 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.target = null;
 
 		bf.playAnim('firstDeath');
-		
-		#if mobile
-		addVirtualPad(NONE, A_B);
-		addVirtualPadCamera(true);
-		#end
+
+   #if mobile
+   addVirtualPad(NONE, A_B);
+   addVirtualPadCamera(true);
+   #end
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
-		#if mobile
-		for (touch in FlxG.touches.list)
-		{
-			if (touch.justPressed)
-			{
-				pressedEnter = true;
-			}
-		}
-		#end
-
-		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
 
 		if (controls.ACCEPT)
 		{
