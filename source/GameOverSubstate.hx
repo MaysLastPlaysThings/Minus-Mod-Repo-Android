@@ -12,7 +12,6 @@ class GameOverSubstate extends MusicBeatSubstate
 	var bf:Boyfriend;
 	var camFollow:FlxObject;
 
-
 	var stageSuffix:String = "";
 
 	public function new(x:Float, y:Float)
