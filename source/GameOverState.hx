@@ -14,7 +14,6 @@ class GameOverState extends FlxTransitionableState
 	var bfX:Float = 0;
 	var bfY:Float = 0;
 	var bf:Boyfriend;
-	var stageSuffix:String = "";
 
 	public function new(x:Float, y:Float)
 	{
@@ -61,33 +60,6 @@ class GameOverState extends FlxTransitionableState
 	{
 		var pressed:Bool = FlxG.keys.justPressed.ANY;
 
-		#if mobile
-		for (touch in FlxG.touches.list)
-		{
-			if (touch.justPressed)
-			{
-				pressedEnter = true;
-			}
-		}
-		#end
-
-		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
-
-		if (pressedEnter)
-		{
-			endBullshit();
-		}
-
-		if (#if android FlxG.android.justReleased.BACK #else controls.BACK #end)
-		{
-			FlxG.sound.music.stop();
-
-			if (PlayState.isStoryMode)
-				FlxG.switchState(new StoryMenuState());
-			else
-				FlxG.switchState(new FreeplayState());
-		}
-
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
 		if (gamepad != null)
@@ -108,25 +80,5 @@ class GameOverState extends FlxTransitionableState
 			});
 		}
 		super.update(elapsed);
-	}
-
-		var isEnding:Bool = false;
-
-	function endBullshit():Void
-	{
-		if (!isEnding)
-		{
-			isEnding = true;
-			bf.playAnim('deathConfirm', true);
-			FlxG.sound.music.stop();
-			FlxG.sound.play('assets/music/gameOverEnd' + stageSuffix + TitleState.soundExt);
-			new FlxTimer().start(0.7, function(tmr:FlxTimer)
-			{
-				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
-				{
-					FlxG.switchState(new PlayState());
-				});
-			});
-		}
 	}
 }
